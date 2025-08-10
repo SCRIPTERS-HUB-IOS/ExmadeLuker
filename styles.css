@@ -1,0 +1,225 @@
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0; padding: 0; height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0a0a0a;
+  color: #eee;
+  --brightness: 1;
+  --glass-bg: rgba(255 255 255 / 0.05);
+  --btn-bg: rgba(255 255 255 / 0.07);
+  --btn-hover: rgba(255 255 255 / 0.15);
+  --text-glow: #fff;
+  --neon-color: #0ff;
+}
+
+body.theme-black-white {
+  background: #111;
+  color: #eee;
+  --glass-bg: rgba(255 255 255 / 0.05);
+  --btn-bg: rgba(255 255 255 / 0.07);
+  --btn-hover: rgba(255 255 255 / 0.15);
+  --text-glow: #fff;
+  --neon-color: #0ff;
+}
+
+body.theme-white-black {
+  background: #fafafa;
+  color: #222;
+  --glass-bg: rgba(0 0 0 / 0.07);
+  --btn-bg: rgba(0 0 0 / 0.06);
+  --btn-hover: rgba(0 0 0 / 0.13);
+  --text-glow: #222;
+  --neon-color: #0077ff;
+}
+
+/* Particle canvas fills entire background */
+#particleCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Main container */
+main {
+  position: relative;
+  z-index: 10;
+  max-width: 460px;
+  margin: 6vh auto;
+  background: var(--glass-bg);
+  border-radius: 24px;
+  padding: 2.5rem 3rem 3rem;
+  box-shadow:
+    0 0 24px var(--neon-color),
+    inset 0 0 20px var(--glass-bg);
+  color: inherit;
+  user-select: none;
+  backdrop-filter: saturate(150%) blur(18px) brightness(1.2);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1.logo {
+  margin: 0 0 2.2rem 0;
+  font-weight: 900;
+  font-size: 3.4rem;
+  text-align: center;
+  color: var(--neon-color);
+  text-shadow:
+    0 0 8px var(--neon-color),
+    0 0 22px var(--neon-color);
+}
+
+#page-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.btn {
+  position: relative;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.2rem;
+  padding: 1.15rem 2.5rem;
+  background: var(--btn-bg);
+  border-radius: 20px;
+  border: none;
+  color: inherit;
+  text-align: center;
+  box-shadow:
+    0 0 12px var(--neon-color);
+  overflow: hidden;
+  user-select: none;
+  transition:
+    background 0.25s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+  will-change: transform;
+}
+
+.btn:hover, .btn:focus {
+  background: var(--btn-hover);
+  box-shadow:
+    0 0 40px var(--neon-color),
+    0 0 60px var(--neon-color);
+  outline: none;
+  transform: scale(1.06);
+}
+
+.btn.discord {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--neon-color);
+}
+
+.btn.discord svg {
+  width: 28px;
+  height: 28px;
+  filter: drop-shadow(0 0 6px var(--neon-color));
+}
+
+/* Ripple effect */
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255 255 255 / 0.2);
+  animation: rippleEffect 0.55s ease-out forwards;
+  pointer-events: none;
+  transform: scale(0);
+  will-change: transform, opacity;
+  z-index: 10;
+}
+
+@keyframes rippleEffect {
+  to {
+    opacity: 0;
+    transform: scale(4);
+  }
+}
+
+.brightness-container {
+  margin-top: 3.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  user-select: none;
+}
+
+.brightness-container label {
+  flex-shrink: 0;
+}
+
+.brightness-container input[type=range] {
+  flex-grow: 1;
+  -webkit-appearance: none;
+  height: 10px;
+  border-radius: 14px;
+  background: var(--btn-bg);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--neon-color);
+  transition: background 0.3s ease;
+}
+
+.brightness-container input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  background: var(--neon-color);
+  border-radius: 50%;
+  box-shadow: 0 0 18px var(--neon-color);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.brightness-container input[type=range]:focus {
+  outline: none;
+}
+
+.back-btn {
+  font-size: 1rem;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+  margin-bottom: 1.6rem;
+  padding-left: 0;
+  width: fit-content;
+}
+
+/* Page fade animation */
+.fade-in {
+  animation: fadeInSlide 0.45s ease forwards;
+}
+.fade-out {
+  animation: fadeOutSlide 0.4s ease forwards;
+}
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOutSlide {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(15px); }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  main {
+    margin: 4vh 1rem;
+    width: calc(100% - 2rem);
+    padding: 2rem 1.5rem 2.8rem;
+  }
+  h1.logo {
+    font-size: 2.8rem;
+  }
+}
