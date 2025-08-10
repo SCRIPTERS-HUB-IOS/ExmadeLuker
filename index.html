@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>exmadeW - Glassy Neon UI</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="theme-black-white" style="filter: brightness(var(--brightness));">
+  <canvas id="particleCanvas"></canvas>
+  <main>
+    <h1 class="logo">exmade</h1>
+    <div id="page-container"></div>
+
+    <div class="brightness-container" aria-label="Brightness Control">
+      <label for="brightness-slider">Brightness</label>
+      <input type="range" id="brightness-slider" min="0.5" max="1.5" step="0.01" value="1" />
+    </div>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
